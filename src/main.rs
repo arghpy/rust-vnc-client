@@ -1,6 +1,6 @@
 use std::fs;
-use iced::widget::{Column, PickList};
-use iced::{Alignment, Element};
+use iced::widget::PickList;
+use iced::Element;
 
 const HOSTS_FILE: &str = "test_input_combobox.txt";
 
@@ -42,15 +42,11 @@ impl Client {
         }
     }
     fn view(&self) -> Element<Message> {
-        let pick_list = PickList::new(
+        PickList::new(
             &self.hosts[..],
             self.selected_host.clone(),
             Message::SelectedHost
-        ).placeholder("Select/Enter an option");
-
-        let content = Column::new()
-            .push(pick_list);
-        content.align_x(Alignment::Center).into()
+        ).placeholder("Select/Enter an option").into()
     }
 
 }
